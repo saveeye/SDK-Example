@@ -4,4 +4,5 @@ src/Secrets.tsx
 ios/Pods
 ios/build
 android/build
+android/app/build
 vendor/
