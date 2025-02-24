@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "784883843549",
+    "project_id": "saveeye-app-dev",
+    "storage_bucket": "saveeye-app-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784883843549:android:b0776a4891017f2449b634",
+        "android_client_info": {
+          "package_name": "dk.saveeye.WattUp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784883843549-l7bi970ntupi5k6k6drdrsgdb999q9me.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dk.saveeye.WattUp",
+            "certificate_hash": "163ace30c9a26af075eb7289f169239e5fa363c0"
+          }
+        },
+        {
+          "client_id": "784883843549-uo603b56pj1fbf6ibe8cejdla65q1dfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmsHNoZfOLX_aw07MbczEUKut1BtUBpmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784883843549-uo603b56pj1fbf6ibe8cejdla65q1dfa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "784883843549-vp0q044kopug16bsc7lv6523fuog1a2l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dk.saveeye.wattup"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784883843549:android:395111103ecfbd5749b634",
+        "android_client_info": {
+          "package_name": "saveeyesdk.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784883843549-uo603b56pj1fbf6ibe8cejdla65q1dfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmsHNoZfOLX_aw07MbczEUKut1BtUBpmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784883843549-uo603b56pj1fbf6ibe8cejdla65q1dfa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "784883843549-vp0q044kopug16bsc7lv6523fuog1a2l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dk.saveeye.wattup"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
