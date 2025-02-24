@@ -1,3 +1,7 @@
 node_modules/
 ios/GoogleService-Info.plist
 src/Secrets.tsx
+ios/Pods
+ios/build
+android/build
+vendor/
