@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import SaveeyeSdk from '@saveeye/saveeye-sdk-reactnative';
-import { ConnectionStages } from '../../../src/enums/ConnectionStages';
+import SaveeyeSdk, { ConnectionStages } from '@saveeye/saveeye-sdk-reactnative';
 import { MainFlowNavigaton, type StackParams } from '../App';
 
 interface Props
@@ -19,7 +18,7 @@ export const PairScreen = ({ route, navigation }: Props) => {
   const startDeviceProvisioning = useCallback(() => {
     setOnError(false);
     saveeyesdk
-      .provisioningDevice(route.params.deviceId)
+      .provisionDevice(route.params.deviceId)
       .then((device) => {
         console.log('Device paired successfully, connecting to wifi');
         navigation.navigate(MainFlowNavigaton.CONNECT_WIFI, { device: device });
