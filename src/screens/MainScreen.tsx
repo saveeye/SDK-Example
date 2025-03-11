@@ -55,6 +55,10 @@ export const MainScreen = ({ navigation }: MainScreenProps) => {
               });
             }}
           />
+          <Button
+            title="Pair new device"
+            onPress={() => navigation.navigate(MainFlowNavigaton.QR)}
+          />
         </>
       ) : (
         <View style={styles.container}>

@@ -1,7 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SaveeyeSdk, {
+  EnergyUsageHistory,
   IntervalType,
-  type DeviceHistory,
 } from '@saveeye/saveeye-sdk-reactnative';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
@@ -11,7 +11,7 @@ interface Props
   extends NativeStackScreenProps<StackParams, MainFlowNavigaton.HISTORY> {}
 
 export const HistoryScreen = ({ navigation, route }: Props) => {
-  const [history, setHistory] = useState<DeviceHistory>();
+  const [history, setHistory] = useState<EnergyUsageHistory>();
 
   useEffect(() => {
     console.log('Got device id', route.params.deviceId);
