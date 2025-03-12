@@ -39,8 +39,8 @@ export const RealtimeScreen = ({ navigation, route }: Props) => {
           return (
             <Text key={index} style={styles.period}>
               {reading.timestamp.toISOString()} - Consumption:{' '}
-              {reading.currentConsumptionWh.total} kWh - Production:{' '}
-              {reading.currentProductionWh.total} kWh
+              {reading.currentConsumptionW.total} kWh - Production:{' '}
+              {reading.currentProductionW.total} kWh
             </Text>
           );
         })}
