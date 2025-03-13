@@ -130,6 +130,16 @@ export const DeviceSettingsScreen = ({ navigation, route }: Props) => {
               });
           }}
         />
+        <Button
+          title="Unpair device"
+          onPress={() => {
+            SaveeyeSdk.getInstance()
+              .unpairDevice(route.params.deviceId)
+              .then(() => {
+                navigation.goBack();
+              });
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );

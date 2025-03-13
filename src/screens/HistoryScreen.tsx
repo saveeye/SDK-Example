@@ -5,6 +5,7 @@ import SaveeyeSdk, {
 } from '@saveeye/saveeye-sdk-reactnative';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { PowerUsageHistory } from '../../../src/__generated__/graphql';
 import type { MainFlowNavigaton, StackParams } from '../App';
 
 interface Props
@@ -12,6 +13,7 @@ interface Props
 
 export const HistoryScreen = ({ navigation, route }: Props) => {
   const [history, setHistory] = useState<EnergyUsageHistory>();
+  const [powerHistory, setPowerHistory] = useState<PowerUsageHistory>();
 
   useEffect(() => {
     console.log('Got device id', route.params.deviceId);
@@ -21,7 +23,19 @@ export const HistoryScreen = ({ navigation, route }: Props) => {
     fromDate.setSeconds(0);
 
     SaveeyeSdk.getInstance()
-      .getDeviceHistory(
+      .getPowerUsageHistory(
+        route.params.deviceId,
+        fromDate,
+        new Date(),
+        IntervalType.Hour
+      )
+      .then((serverHistory) => {
+        console.log('HistoryScreen history:', serverHistory);
+        setPowerHistory(serverHistory);
+      });
+
+    SaveeyeSdk.getInstance()
+      .getEnergyUsageHistory(
         route.params.deviceId,
         fromDate,
         new Date(),
@@ -32,6 +46,7 @@ export const HistoryScreen = ({ navigation, route }: Props) => {
         setHistory(serverHistory);
       });
   }, [route.params.deviceId]);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text>History Screen</Text>
@@ -44,6 +59,14 @@ export const HistoryScreen = ({ navigation, route }: Props) => {
               Consumption: {summary.energyConsumedKWh} - Production:{' '}
               {summary.energyProducedKWh}
             </Text>
+          </View>
+        );
+      })}
+      {powerHistory?.powerUsageSummaries?.map((summary, index) => {
+        return (
+          <View key={index}>
+            <Text style={styles.period}>{summary.aggregationPeriod}</Text>
+            <Text>Power: {summary.averageConsumptionWatt} W</Text>
           </View>
         );
       })}
