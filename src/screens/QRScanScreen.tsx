@@ -7,7 +7,7 @@ import {
   useCameraPermission,
   useCodeScanner,
 } from 'react-native-vision-camera';
-import getIdFromQR from '../../../src/utils/SaveEyeUtil';
+import { getIdFromQR } from '../../../src/utils/SaveEyeUtil';
 import { MainFlowNavigaton } from '../App';
 
 type QRScanScreenProps = {

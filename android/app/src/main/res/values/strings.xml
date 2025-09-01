@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SaveeyeSdkExample</string>
+    
+    <!-- Permission descriptions for react-native-permissions -->
+    <string name="bluetooth_scan_permission_rationale">This app needs Bluetooth scan permission to discover and connect to SaveEye devices.</string>
+    <string name="bluetooth_connect_permission_rationale">This app needs Bluetooth connect permission to communicate with SaveEye devices.</string>
+    <string name="bluetooth_advertise_permission_rationale">This app needs Bluetooth advertise permission to broadcast device information.</string>
+    <string name="location_permission_rationale">This app needs location permission to scan for Bluetooth devices, as required by Android.</string>
 </resources>
