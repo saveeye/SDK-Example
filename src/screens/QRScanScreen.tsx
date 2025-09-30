@@ -1,14 +1,14 @@
-import { useFocusEffect, type NavigationProp } from '@react-navigation/native';
-import { useCallback, useState } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useFocusEffect, type NavigationProp } from "@react-navigation/native";
+import { useCallback, useState } from "react";
+import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import {
   Camera,
   useCameraDevice,
   useCameraPermission,
   useCodeScanner,
-} from 'react-native-vision-camera';
-import { getIdFromQR } from '../../../src/utils/SaveEyeUtil';
-import { MainFlowNavigaton } from '../App';
+} from "react-native-vision-camera";
+import { MainFlowNavigaton } from "../App";
+import SaveeyeSdk from "@saveeye/saveeye-sdk-reactnative";
 
 type QRScanScreenProps = {
   navigation: NavigationProp<any>;
@@ -17,21 +17,27 @@ type QRScanScreenProps = {
 export const QRScanScreen = ({ navigation }: QRScanScreenProps) => {
   const { hasPermission, requestPermission } = useCameraPermission();
   const [serialMatchFound, setSerialMatchFound] = useState<boolean>(false);
-  const device = useCameraDevice('back');
+  const device = useCameraDevice("back");
   const codeScanner = useCodeScanner({
-    codeTypes: ['qr', 'ean-13'],
+    codeTypes: ["qr", "ean-13"],
     onCodeScanned: (codes) => {
       if (!serialMatchFound) {
         codes.map((code) => {
           if (code.value) {
-            const deviceId = getIdFromQR(code.value);
-            if (deviceId) {
-              setSerialMatchFound(true);
-              console.log('Found deviceid: ', deviceId);
-              navigation.navigate(MainFlowNavigaton.PAIR, {
-                deviceId: deviceId,
+            setSerialMatchFound(true);
+            console.log("Found deviceid: ", code.value);
+            SaveeyeSdk.getInstance()
+              .isDeviceOnline(code.value)
+              .then((isOnline) => {
+                if (isOnline) {
+                  // Device is already online - We can skip the rest of the onboarding (wifi provisioning etc.)
+                  navigation.navigate(MainFlowNavigaton.MAIN);
+                } else {
+                  navigation.navigate(MainFlowNavigaton.PAIR, {
+                    deviceId: code.value,
+                  });
+                }
               });
-            }
           }
         });
       }
@@ -41,14 +47,14 @@ export const QRScanScreen = ({ navigation }: QRScanScreenProps) => {
   useFocusEffect(
     useCallback(() => {
       // Function to run when the view appears
-      console.log('QRScanScreen is focused');
+      console.log("QRScanScreen is focused");
       setSerialMatchFound(false);
 
       return () => {
         // Cleanup function to run when the view disappears
-        console.log('QRScanScreen is unfocused');
+        console.log("QRScanScreen is unfocused");
       };
-    }, [])
+    }, []),
   );
   return (
     <SafeAreaView style={styles.container}>
@@ -71,13 +77,13 @@ export const QRScanScreen = ({ navigation }: QRScanScreenProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   innerContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    alignItems: "center",
+    justifyContent: "space-around",
     paddingHorizontal: 10,
   },
 });
