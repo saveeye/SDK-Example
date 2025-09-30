@@ -30,8 +30,12 @@ export const QRScanScreen = ({ navigation }: QRScanScreenProps) => {
               .isDeviceOnline(code.value)
               .then((isOnline) => {
                 if (isOnline) {
-                  // Device is already online - We can skip the rest of the onboarding (wifi provisioning etc.)
-                  navigation.navigate(MainFlowNavigaton.MAIN);
+                  // Device is already online - We pair the user to the devices and can then skip the rest of the onboarding (wifi provisioning etc.)
+                  SaveeyeSdk.getInstance()
+                    .pairDevice(code.value!)
+                    .then(() => {
+                      navigation.navigate(MainFlowNavigaton.MAIN);
+                    });
                 } else {
                   navigation.navigate(MainFlowNavigaton.PAIR, {
                     deviceId: code.value,
